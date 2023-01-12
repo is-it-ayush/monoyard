@@ -4,14 +4,14 @@ import Link from "next/link";
 
 export default async function Home() {
   return (
-    <div className="flex font-poppins h-screen justify-center items-center">
+    <div className="font-poppins flex h-screen items-center justify-center">
       <main className="flex flex-col">
         <div className="flex flex-col lg:flex-row">
           <Link
-            className="flex flex-row m-5 p-2 hover:bg-gray-200 duration-200 rounded-lg min-w-fit-[150px]"
+            className="min-w-fit-[150px] m-5 flex flex-row rounded-lg p-2 duration-200 hover:bg-gray-200"
             href="/csr"
           >
-            <FiClock className="flex text-3xl mx-2 place-self-center" />
+            <FiClock className="mx-2 flex place-self-center text-3xl" />
             <div className="flex flex-col">
               <div className="flex text-xl font-semibold ">CSR</div>
             </div>
@@ -19,9 +19,9 @@ export default async function Home() {
         </div>
       </main>
       <footer className="fixed bottom-5 w-full text-center">
-        <div className="flex flex-col lg:flex-row justify-evenly">
+        <div className="flex flex-col justify-evenly lg:flex-row">
           <h1 className="">Benchmarking Next13</h1>
-          <div className="flex flex-row whitespace-nowrap justify-center my-2 lg:m-0">
+          <div className="my-2 flex flex-row justify-center whitespace-nowrap lg:m-0">
             <h1 className="mx-2">Follow:</h1>
             <button className="mx-2">Twitter</button>
           </div>

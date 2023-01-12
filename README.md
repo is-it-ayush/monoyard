@@ -4,8 +4,7 @@ Hi! You're probably wondering what this is. I'll explain. This repository is jus
 tech and stacks. You're not gonna find anything worthy of use in here. I made this solely to organize junk as it was scattered throughout my github repositories in various different repo's.
 
 This repository uses [Turborepo](https://turbo.build/repo) to manage a monorepo. It also use's [Yarn](https://classic.yarnpkg.com/)
-to manage dependencies. 
-
+to manage dependencies.
 
 ### Some Useful Concepts
 

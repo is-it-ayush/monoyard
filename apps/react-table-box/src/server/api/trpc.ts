@@ -16,9 +16,9 @@
  * processing a request
  *
  */
-import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
+import { type CreateNextContextOptions } from '@trpc/server/adapters/next';
 
-import { prisma } from "../db";
+import { prisma } from '../db';
 
 type CreateContextOptions = Record<string, never>;
 
@@ -52,17 +52,15 @@ export const createTRPCContext = async (_opts: CreateNextContextOptions) => {
  * This is where the trpc api is initialized, connecting the context and
  * transformer
  */
-import { initTRPC } from "@trpc/server";
-import superjson from "superjson";
+import { initTRPC } from '@trpc/server';
+import superjson from 'superjson';
 
-const t = initTRPC
-  .context<Awaited<ReturnType<typeof createTRPCContext>>>()
-  .create({
-    transformer: superjson,
-    errorFormatter({ shape }) {
-      return shape;
-    },
-  });
+const t = initTRPC.context<Awaited<ReturnType<typeof createTRPCContext>>>().create({
+  transformer: superjson,
+  errorFormatter({ shape }) {
+    return shape;
+  },
+});
 
 /**
  * 3. ROUTER & PROCEDURE (THE IMPORTANT BIT)

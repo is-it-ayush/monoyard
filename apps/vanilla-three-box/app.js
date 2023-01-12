@@ -1,6 +1,5 @@
 import * as THREE from "three";
 
-
 // Set up the scene, camera, and renderer
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera(

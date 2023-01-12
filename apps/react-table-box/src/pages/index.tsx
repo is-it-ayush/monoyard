@@ -42,7 +42,6 @@ const Home: NextPage = () => {
 
   React.useEffect(() => {
     if (req.isSuccess) {
-      
       const res = req.data as Person[] | DriverGroup[] | Instrument[];
       const columnType = getColumnDefinations(res) as ColumnDef<object>[];
       const dataType = getColumnData(res);

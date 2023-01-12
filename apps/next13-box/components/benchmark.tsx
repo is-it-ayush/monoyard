@@ -11,12 +11,11 @@ const getLastTime = (key: string) => {
 };
 
 export const Benchmark: React.FC<{ children: string }> = ({ children }) => {
-  
   const lastTime = getLastTime(children);
 
   return (
     <>
-      <div className="flex flex-row justify-center items-center">
+      <div className="flex flex-row items-center justify-center">
         <h4 id="givemetime" className="mr-2">
           {lastTime ?? "dont know!"}
         </h4>

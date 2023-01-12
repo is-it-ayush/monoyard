@@ -1,0 +1,14 @@
+# Node Modules
+/node_modules
+
+# Logs
+logs
+*.log
+
+# Env
+.env
+
+# Some other folders
+**/.next
+**/.vercel
+**/.git
