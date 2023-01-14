@@ -42,3 +42,5 @@ export const data = [
     company: "unknown",
   },
 ];
+
+export type Person = (typeof data)[0];
