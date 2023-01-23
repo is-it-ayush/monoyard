@@ -11,15 +11,27 @@ export const personDefinition: ColumnDef<Person>[] = [
     accessorKey: 'name',
   },
   {
-    header: 'Age',
-    accessorKey: 'age',
+    header: 'Email',
+    accessorKey: 'email',
   },
   {
-    header: 'Company',
-    accessorKey: 'company',
+    header: 'Phone',
+    accessorKey: 'phone',
   },
   {
-    header: 'Twitter',
-    accessorKey: 'twitter',
+    header: 'Address',
+    accessorKey: 'address',
+  },
+  {
+    header: 'City',
+    accessorKey: 'city',
+  },
+  {
+    header: 'State',
+    accessorKey: 'state',
+  },
+  {
+    header: 'Zip',
+    accessorKey: 'zip',
   },
 ];
