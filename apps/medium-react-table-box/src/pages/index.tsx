@@ -7,9 +7,26 @@ import {
   flexRender,
   getCoreRowModel,
   getPaginationRowModel,
+  FilterFn,
+  getFilteredRowModel,
 } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
+import { RankingInfo, rankItem } from '@tanstack/match-sorter-utils';
 
+declare module '@tanstack/table-core' {
+  interface FilterFns {
+    myFilter: FilterFn<unknown>;
+  }
+  interface FilterMeta {
+    itemRank: RankingInfo;
+  }
+}
+
+const myFilter: FilterFn<Person> = (row, columnId, filterValue, addMeta) => {
+  const itemRank = rankItem(row.getValue(columnId), filterValue);
+  addMeta({ itemRank });
+  return itemRank.passed;
+};
 
 const Home: NextPage = () => {
   const [data, setData] = useState<Person[]>([]);
@@ -24,11 +41,22 @@ const Home: NextPage = () => {
     };
   }, []);
 
+  const [query, setQuery] = useState('');
+
   const tableInstance = useReactTable({
     data,
     columns: personDefinition,
+    state: {
+      globalFilter: query,
+    },
+    filterFns: {
+      myFilter: myFilter,
+    },
+    globalFilterFn: 'myFilter',
+    onGlobalFilterChange: setQuery,
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
+    getFilteredRowModel: getFilteredRowModel(),
   });
 
   return (
@@ -36,7 +64,11 @@ const Home: NextPage = () => {
       <div className="my-5 flex">
         <input
           className="w-full border-2 border-violet-300 p-2 text-violet-700 outline-none transition-colors duration-200 focus:border-violet-500"
-          placeholder="Search..."></input>
+          placeholder="Search..."
+          value={query ?? ''}
+          onChange={(e) => {
+            setQuery(String(e.target.value));
+          }}></input>
       </div>
       <table>
         <thead>
