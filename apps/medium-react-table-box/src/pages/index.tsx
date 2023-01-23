@@ -9,9 +9,12 @@ import {
   getPaginationRowModel,
   FilterFn,
   getFilteredRowModel,
+  SortingState,
+  getSortedRowModel,
 } from '@tanstack/react-table';
 import { useEffect, useState } from 'react';
 import { RankingInfo, rankItem } from '@tanstack/match-sorter-utils';
+import { RxCaretUp, RxCaretDown, RxCaretSort } from 'react-icons/rx';
 
 declare module '@tanstack/table-core' {
   interface FilterFns {
@@ -42,16 +45,20 @@ const Home: NextPage = () => {
   }, []);
 
   const [query, setQuery] = useState('');
+  const [sortState, setSortState] = useState<SortingState>([]);
 
   const tableInstance = useReactTable({
     data,
     columns: personDefinition,
     state: {
       globalFilter: query,
+      sorting: sortState,
     },
     filterFns: {
       myFilter: myFilter,
     },
+    onSortingChange: setSortState,
+    getSortedRowModel: getSortedRowModel(),
     globalFilterFn: 'myFilter',
     onGlobalFilterChange: setQuery,
     getCoreRowModel: getCoreRowModel(),
@@ -81,12 +88,29 @@ const Home: NextPage = () => {
                       colSpan={header.colSpan}
                       key={header.id}
                       className="border-2 border-violet-300 p-2 text-violet-700 transition-colors duration-200 hover:bg-violet-200">
-                      {header.isPlaceholder
-                        ? null
-                        : flexRender(
+                      {header.isPlaceholder ? null : (
+                        <div
+                          onClick={header.column.getToggleSortingHandler()}
+                          className={`flex flex-row items-center justify-between gap-2 ${
+                            header.column.getCanSort()
+                              ? 'cursor-pointer select-none'
+                              : null
+                          }`}>
+                          {flexRender(
                             header.column.columnDef.header,
                             header.getContext()
                           )}
+                          {header.column.getIsSorted() ? (
+                            header.column.getIsSorted() === 'desc' ? (
+                              <RxCaretDown />
+                            ) : (
+                              <RxCaretUp />
+                            )
+                          ) : (
+                            <RxCaretSort />
+                          )}
+                        </div>
+                      )}
                     </th>
                   );
                 })}
