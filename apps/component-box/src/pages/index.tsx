@@ -1,6 +1,5 @@
 import { Open_Sans, Roboto } from '@next/font/google';
 import { Button } from '@src/components/ui/Button';
-import { Switch } from '@src/components/ui/Switch';
 
 const sans = Open_Sans({
   subsets: ['latin'],
@@ -18,7 +17,6 @@ export default function Home() {
           }}>
           Button
         </Button>
-        <Switch />
       </div>
     </main>
   );
