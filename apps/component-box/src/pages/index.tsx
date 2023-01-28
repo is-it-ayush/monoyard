@@ -27,6 +27,27 @@ import {
   Checkbox,
   CheckboxLabelDescription,
 } from '@src/components/ui/Checkbox';
+import {
+  ContextMenu,
+  ContextMenuContent,
+  ContextMenuItem,
+  ContextMenuLabel,
+  ContextMenuTrigger,
+  ContextMenuGroup,
+  ContextMenuSeparator,
+  ContextMenuShortcut,
+  ContextMenuSub,
+  ContextMenuSubTrigger,
+  ContextMenuSubContent,
+} from '@src/components/ui/ContextMenu';
+import {
+  DialogTrigger,
+  DialogContent,
+  DialogTitle,
+  DialogDescription,
+  DialogHeader,
+  Dialog,
+} from '@src/components/ui/Dialog';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -132,6 +153,86 @@ export default function Home() {
               </CheckboxLabelDescription>
             </div>
           </div>
+        </Container>
+        <Container title="Context Menu Component">
+          <ContextMenu>
+            <ContextMenuTrigger className="border-2 border-dashed py-10 px-32 text-center">
+              Right click
+            </ContextMenuTrigger>
+            <ContextMenuContent>
+              <ContextMenuGroup>
+                <ContextMenuLabel className="text-sm font-light">
+                  Actions
+                </ContextMenuLabel>
+                <ContextMenuItem
+                  onClick={() => {
+                    console.log('"profile" clicked');
+                  }}>
+                  Profile
+                  <ContextMenuShortcut className="text-sm font-light">
+                    ⌘ + P
+                  </ContextMenuShortcut>
+                </ContextMenuItem>
+                <ContextMenuItem
+                  onClick={() => {
+                    console.log('"settings" clicked');
+                  }}>
+                  Settings
+                </ContextMenuItem>
+              </ContextMenuGroup>
+              <ContextMenuSeparator />
+              <ContextMenuGroup>
+                <ContextMenuLabel className="text-sm font-light">
+                  Other
+                </ContextMenuLabel>
+                <ContextMenuSub>
+                  <ContextMenuSubTrigger>Submenu</ContextMenuSubTrigger>
+                  <ContextMenuSubContent>
+                    <ContextMenuGroup>
+                      <ContextMenuItem
+                        onClick={() => {
+                          console.log('"submenu item 1" clicked');
+                        }}>
+                        Submenu Item 1
+                      </ContextMenuItem>
+                      <ContextMenuItem
+                        onClick={() => {
+                          console.log('"submenu item 2" clicked');
+                        }}>
+                        Submenu Item 2
+                      </ContextMenuItem>
+                    </ContextMenuGroup>
+                  </ContextMenuSubContent>
+                </ContextMenuSub>
+                <ContextMenuItem
+                  onClick={() => {
+                    console.log('"logout" clicked');
+                  }}>
+                  Logout
+                  <ContextMenuShortcut className="text-sm font-light">
+                    ⌘ + L
+                  </ContextMenuShortcut>
+                </ContextMenuItem>
+              </ContextMenuGroup>
+            </ContextMenuContent>
+          </ContextMenu>
+        </Container>
+        <Container title="Dialog Component">
+          <Dialog>
+            <DialogTrigger className="my-2 flex w-full items-center justify-center border-2 px-3 py-2 transition-colors duration-200 hover:border-black">
+              Show Information
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Information.</DialogTitle>
+                <DialogDescription>
+                  This is just some information. You can render a form here
+                  instead. It's up to you. You can also render a list of items.
+                  Let your imagination run wild.
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
         </Container>
       </div>
     </main>
