@@ -3,10 +3,10 @@ import React, { useEffect, useState } from "react";
 import { AppRouter } from "../server/trpc/router/_app";
 import { trpc } from "../utils/trpc";
 
-export type ReturnType = inferProcedureOutput<AppRouter["example"]["hello"]>;
+export type ReturnType = inferProcedureOutput<AppRouter["example"]["hello"]>; // infers the procedure output { greeting: string; }
 
 interface HomePageProps {
-  counter: number;
+  counter: number; // simple state update demo
 }
 
 export const HomePage = ({ counter }: HomePageProps) => {
@@ -14,7 +14,7 @@ export const HomePage = ({ counter }: HomePageProps) => {
   const myQuery = trpc.example.hello.useQuery(
     { text: "from tRPC" },
     {
-      enabled: false,
+      enabled: false, // disable the query from automatically running
     }
   );
 

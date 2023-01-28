@@ -4,7 +4,7 @@ import { useState } from "react";
 import { HomePage } from "../components/MyComponent";
 
 const Home: NextPage = () => {
-  const [counter, setCounter] = useState(0);
+  const [counter, setCounter] = useState(0); // simple state update demo
 
   return (
     <>
@@ -14,10 +14,12 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className="container mx-auto flex min-h-screen flex-col items-center justify-center p-4">
-        <HomePage counter={counter} />
+        <HomePage
+          counter={counter} // pass state to child
+        />
         <button
-          className="border-2 bg-black text-white hover:bg-black/70 px-3 py-2"
-          onClick={() => setCounter(counter + 1)}
+          className="border-2 bg-black px-3 py-2 text-white hover:bg-black/70"
+          onClick={() => setCounter(counter + 1)} // update state in parent
         >
           Increment
         </button>
