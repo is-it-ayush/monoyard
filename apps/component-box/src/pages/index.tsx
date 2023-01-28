@@ -22,6 +22,11 @@ import {
 import { AspectRatio } from '@src/components/ui/AspectRatio';
 import { Container } from '@src/components/ui/Container';
 import { Avatar, AvatarFallback, AvatarImage } from '@src/components/ui/Avatar';
+import {
+  CheckboxLabel,
+  Checkbox,
+  CheckboxLabelDescription,
+} from '@src/components/ui/Checkbox';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -113,8 +118,22 @@ export default function Home() {
             <AvatarFallback>AG</AvatarFallback>
           </Avatar>
         </Container>
-        <Container title="Avatar Component">
+        <Container title="Checkbox Component">
+          <div className="items-top flex space-x-2">
+            <Checkbox id="terms1" />
+            <div className="grid gap-1.5 leading-none">
+              <CheckboxLabel htmlFor="terms1">
+                I agree to the terms and conditions
+              </CheckboxLabel>
+              <CheckboxLabelDescription className="w-[300px]">
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+                tincidunt, nisl eget ultricies tincidunt, nisl eros aliquam
+                mauris, nec ultricies nunc lorem eget nunc.
+              </CheckboxLabelDescription>
+            </div>
+          </div>
         </Container>
+        
       </div>
     </main>
   );
