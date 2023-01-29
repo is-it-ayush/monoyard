@@ -1,4 +1,3 @@
-import { Button } from '@src/components/ui/Button';
 import { Poppins } from '@next/font/google';
 import Image from 'next/image';
 
@@ -48,6 +47,44 @@ import {
   DialogHeader,
   Dialog,
 } from '@src/components/ui/Dialog';
+import {
+  DropdownMenuGroup,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuShortcut,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSub,
+  DropdownMenuSubTrigger,
+  DropdownMenuPortal,
+  DropdownMenuSubContent,
+} from '@src/components/ui/DropdownMenu';
+import { Switch } from '@src/components/ui/Switch';
+import { Button } from '@src/components/ui/Button';
+import {
+  Cloud,
+  CreditCard,
+  Github,
+  HeartHandshake,
+  Keyboard,
+  LifeBuoy,
+  LogOut,
+  Mail,
+  MessageSquare,
+  Moon,
+  Plus,
+  PlusCircle,
+  Settings,
+  Sun,
+  User,
+  UserPlus,
+  Users,
+} from 'lucide-react';
+import { useTheme } from 'next-themes';
+import { useEffect, useState } from 'react';
+import { Text } from '@src/components/ui/Text';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -55,10 +92,55 @@ export const font = Poppins({
 });
 
 export default function Home() {
+  const { theme, setTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) {
+    return null;
+  }
+
   return (
     <main
-      className={`flex ${font.className} min-h-screen w-full items-center justify-center`}>
-      <div className="divide-y-5 flex flex-col gap-5 divide-y-2 divide-black/20">
+      className={`flex ${font.className} items-center justify-center bg-white dark:bg-black`}>
+      <div className="absolute right-5 top-5 flex w-fit flex-row p-3 lg:left-5">
+        {
+          <button
+            onClick={() => {
+              setTheme(theme === 'dark' ? 'light' : 'dark');
+            }}
+            className="flex rounded-full bg-black/10 p-2 hover:bg-black/20 dark:bg-white/10 dark:hover:bg-white/20">
+            {theme === 'dark' ? (
+              <Sun size={24} />
+            ) : (
+              <Moon size={24} className="text-black dark:text-white" />
+            )}
+          </button>
+        }
+        <div className="pl-4">
+          <Dialog>
+            <DialogTrigger className="rounded-full bg-black/10 p-2 hover:bg-black/20 dark:bg-white/10 dark:hover:bg-white/20">
+              <HeartHandshake size={24} />
+            </DialogTrigger>
+            <DialogContent>
+              <DialogHeader>
+                <DialogTitle>Hello.</DialogTitle>
+                <DialogDescription>
+                  You can hold down Option Key [⌥] and hover over the components
+                  to see their paddings and margins. I've used Inspx by Ruano.
+                  These components are highly experimental and are subject to
+                  change. These components are built on top of Shadcn's Radix +
+                  Tailwind CSS components.
+                </DialogDescription>
+              </DialogHeader>
+            </DialogContent>
+          </Dialog>
+        </div>
+      </div>
+      <div className="divide-y-5 mt-2 flex w-fit flex-col gap-5 divide-y-2 divide-black/20 dark:divide-white/20">
         <Container title="Button Component">
           <Button
             onClick={() => {
@@ -93,8 +175,8 @@ export default function Home() {
         </Container>
         <Container title="Alert Dialog Component">
           <AlertDialog>
-            <AlertDialogTrigger className="my-2 flex w-full items-center justify-center border-2 px-3 py-2 transition-colors duration-200 hover:border-black">
-              Show Alert
+            <AlertDialogTrigger asChild>
+              <Button>Open Dialog</Button>
             </AlertDialogTrigger>
             <AlertDialogContent>
               <AlertDialogHeader>
@@ -161,17 +243,13 @@ export default function Home() {
             </ContextMenuTrigger>
             <ContextMenuContent>
               <ContextMenuGroup>
-                <ContextMenuLabel className="text-sm font-light">
-                  Actions
-                </ContextMenuLabel>
+                <ContextMenuLabel>Actions</ContextMenuLabel>
                 <ContextMenuItem
                   onClick={() => {
                     console.log('"profile" clicked');
                   }}>
                   Profile
-                  <ContextMenuShortcut className="text-sm font-light">
-                    ⌘ + P
-                  </ContextMenuShortcut>
+                  <ContextMenuShortcut>⌘ + P</ContextMenuShortcut>
                 </ContextMenuItem>
                 <ContextMenuItem
                   onClick={() => {
@@ -182,9 +260,7 @@ export default function Home() {
               </ContextMenuGroup>
               <ContextMenuSeparator />
               <ContextMenuGroup>
-                <ContextMenuLabel className="text-sm font-light">
-                  Other
-                </ContextMenuLabel>
+                <ContextMenuLabel>Other</ContextMenuLabel>
                 <ContextMenuSub>
                   <ContextMenuSubTrigger>Submenu</ContextMenuSubTrigger>
                   <ContextMenuSubContent>
@@ -209,9 +285,7 @@ export default function Home() {
                     console.log('"logout" clicked');
                   }}>
                   Logout
-                  <ContextMenuShortcut className="text-sm font-light">
-                    ⌘ + L
-                  </ContextMenuShortcut>
+                  <ContextMenuShortcut>⌘ + L</ContextMenuShortcut>
                 </ContextMenuItem>
               </ContextMenuGroup>
             </ContextMenuContent>
@@ -219,8 +293,8 @@ export default function Home() {
         </Container>
         <Container title="Dialog Component">
           <Dialog>
-            <DialogTrigger className="my-2 flex w-full items-center justify-center border-2 px-3 py-2 transition-colors duration-200 hover:border-black">
-              Show Information
+            <DialogTrigger asChild>
+              <Button>Show Information</Button>
             </DialogTrigger>
             <DialogContent>
               <DialogHeader>
@@ -233,6 +307,122 @@ export default function Home() {
               </DialogHeader>
             </DialogContent>
           </Dialog>
+        </Container>
+        <Container title="Dropdown Menu Component">
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <h1 className="w-full cursor-pointer px-3 py-2 text-center hover:bg-white hover:text-black">
+                Show Dropdown
+              </h1>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent className="w-[200px]">
+              <DropdownMenuLabel>My Account</DropdownMenuLabel>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <User className="mr-2 h-4 w-4" />
+                  <span>Profile</span>
+                  <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <CreditCard className="mr-2 h-4 w-4" />
+                  <span>Billing</span>
+                  <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Settings className="mr-2 h-4 w-4" />
+                  <span>Settings</span>
+                  <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+                </DropdownMenuItem>
+                <DropdownMenuItem>
+                  <Keyboard className="mr-2 h-4 w-4" />
+                  <span>Keyboard shortcuts</span>
+                  <DropdownMenuShortcut>⌘K</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuGroup>
+                <DropdownMenuItem>
+                  <Users className="mr-2 h-4 w-4" />
+                  <span>Team</span>
+                </DropdownMenuItem>
+                <DropdownMenuSub>
+                  <DropdownMenuSubTrigger>
+                    <UserPlus className="mr-2 h-4 w-4" />
+                    <span>Invite users</span>
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuPortal>
+                    <DropdownMenuSubContent>
+                      <DropdownMenuItem>
+                        <Mail className="mr-2 h-4 w-4" />
+                        <span>Email</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem>
+                        <MessageSquare className="mr-2 h-4 w-4" />
+                        <span>Message</span>
+                      </DropdownMenuItem>
+                      <DropdownMenuSeparator />
+                      <DropdownMenuItem>
+                        <PlusCircle className="mr-2 h-4 w-4" />
+                        <span>More...</span>
+                      </DropdownMenuItem>
+                    </DropdownMenuSubContent>
+                  </DropdownMenuPortal>
+                </DropdownMenuSub>
+                <DropdownMenuItem>
+                  <Plus className="mr-2 h-4 w-4" />
+                  <span>New Team</span>
+                  <DropdownMenuShortcut>⌘+T</DropdownMenuShortcut>
+                </DropdownMenuItem>
+              </DropdownMenuGroup>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <Github className="mr-2 h-4 w-4" />
+                <span>GitHub</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <LifeBuoy className="mr-2 h-4 w-4" />
+                <span>Support</span>
+              </DropdownMenuItem>
+              <DropdownMenuItem disabled>
+                <Cloud className="mr-2 h-4 w-4" />
+                <span>API</span>
+              </DropdownMenuItem>
+              <DropdownMenuSeparator />
+              <DropdownMenuItem>
+                <LogOut className="mr-2 h-4 w-4" />
+                <span>Log out</span>
+                <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </Container>
+        <Container
+          title="Text"
+          className="flex flex-col items-start justify-start gap-5">
+          <Text heading={true} headingSize={'h1'}>
+            Hi, You're appreciated.
+          </Text>
+          <Text heading={true} headingSize={'h2'}>
+            Hi, You're appreciated.
+          </Text>
+          <Text heading={true} headingSize={'h3'}>
+            Hi, You're appreciated.
+          </Text>
+          <Text heading={true} headingSize={'h4'}>
+            Hi, You're appreciated.
+          </Text>
+          <Text heading={true} headingSize={'h5'}>
+            Hi, You're appreciated.
+          </Text>
+          <Text heading={true} headingSize={'h6'}>
+            Hi, You're appreciated.
+          </Text>
+          <Text className="w-[300px]">
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed
+            condimentum, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget
+            aliquet nunc nisl sit amet nunc. Nulla facilisi.
+          </Text>
         </Container>
       </div>
     </main>

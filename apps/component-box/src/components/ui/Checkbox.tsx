@@ -50,7 +50,7 @@ const CheckboxLabelDescription = ({
   className: ClassValue;
 }) => {
   return (
-    <p className={cn(`text-sm text-gray-500 dark:text-gray-400`, className)}>
+    <p className={cn(`text-sm text-gray-600 dark:text-gray-300`, className)}>
       {children}
     </p>
   );
