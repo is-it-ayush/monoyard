@@ -61,7 +61,7 @@ import {
   DropdownMenuPortal,
   DropdownMenuSubContent,
 } from '@src/components/ui/DropdownMenu';
-import { Switch } from '@src/components/ui/Switch';
+import { Switch, SwitchLabel } from '@src/components/ui/Switch';
 import { Button } from '@src/components/ui/Button';
 import {
   Cloud,
@@ -423,6 +423,16 @@ export default function Home() {
             condimentum, nisl ut aliquam aliquam, nunc nisl aliquet nisl, eget
             aliquet nunc nisl sit amet nunc. Nulla facilisi.
           </Text>
+        </Container>
+        <Container title="Switch Component">
+          <div className="flex w-[300px] flex-row gap-3">
+            <Switch id="myswitch" />
+            <SwitchLabel
+              label="Allow this setting to be enabled."
+              htmlFor="myswitch"
+              className="flex items-center justify-center text-sm"
+            />
+          </div>
         </Container>
       </div>
     </main>
