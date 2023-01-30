@@ -23,22 +23,6 @@ const Switch = React.forwardRef<
 ));
 Switch.displayName = SwitchPrimitives.Root.displayName;
 
-const SwitchLabel = ({
-  label,
-  className,
-  htmlFor,
-}: {
-  label?: string;
-  className?: string;
-  htmlFor?: string;
-}) => {
-  return (
-    <label
-      className={cn('text-black dark:text-white', className)}
-      htmlFor={htmlFor}>
-      {label}
-    </label>
-  );
-};
 
-export { Switch, SwitchLabel };
+
+export { Switch };

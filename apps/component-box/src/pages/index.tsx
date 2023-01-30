@@ -61,7 +61,7 @@ import {
   DropdownMenuPortal,
   DropdownMenuSubContent,
 } from '@src/components/ui/DropdownMenu';
-import { Switch, SwitchLabel } from '@src/components/ui/Switch';
+import { Switch } from '@src/components/ui/Switch';
 import { Button } from '@src/components/ui/Button';
 import {
   Cloud,
@@ -85,6 +85,13 @@ import {
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 import { Text } from '@src/components/ui/Text';
+import {
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+} from '@src/components/ui/HoverCard';
+import { Label } from '@src/components/ui/Label';
+import { Input } from '@src/components/ui/Input';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -208,8 +215,8 @@ export default function Home() {
         <Container title="Aspect Ratio Component">
           <AspectRatio ratio={16 / 9}>
             <Image
-              src="https://images.unsplash.com/photo-1618067328091-d0794daec04c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1228&q=80"
-              alt="Photo by Alvaro Pinot"
+              src="https://images.unsplash.com/photo-1674824959440-09442ed75a8e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+              alt="Photo by Collin Watts on Unsplash"
               fill
               className="rounded-md object-cover"
             />
@@ -427,11 +434,83 @@ export default function Home() {
         <Container title="Switch Component">
           <div className="flex w-[300px] flex-row gap-3">
             <Switch id="myswitch" />
-            <SwitchLabel
-              label="Allow this setting to be enabled."
+            <Label
               htmlFor="myswitch"
-              className="flex items-center justify-center text-sm"
+              className="flex items-center justify-center text-sm">
+              Allow this setting to be enabled.
+            </Label>
+          </div>
+        </Container>
+        <Container title="Hover Card Component" className="flex-col gap-5">
+          <HoverCard>
+            <HoverCardTrigger>Hover</HoverCardTrigger>
+            <HoverCardContent>
+              <div className="space-y-2">
+                <h4 className="text-sm font-semibold">@is-it-ayush</h4>
+                <p className="text-sm">
+                  This one's awesome, isn't it? You can use this to brief
+                  display information.
+                </p>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+          <HoverCard>
+            <HoverCardTrigger>With Image</HoverCardTrigger>
+            <HoverCardContent className="w-[350px]">
+              <div className="grid grid-cols-2 grid-rows-1 space-x-4">
+                <div className="p-3">
+                  <AspectRatio ratio={1}>
+                    <Image
+                      src="https://images.unsplash.com/photo-1542291026-7eec264c27ff?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1170&q=80"
+                      alt="Photo by Revolt on Unsplash"
+                      fill
+                      className="rounded-md object-cover"
+                    />
+                  </AspectRatio>
+                </div>
+                <div className="space-y-2">
+                  <h4 className="text-lg font-semibold">Cool Shoe</h4>
+                  <p className="text-sm">
+                    It's red and cool. It's a shoe, cool shoe. I found this
+                    image on Unsplash and I thought it would be a good example.
+                  </p>
+                </div>
+              </div>
+            </HoverCardContent>
+          </HoverCard>
+        </Container>
+        <Container title="Input Component" className="flex flex-col">
+          <div className="w-full">
+            <Input id="Name" placeholder="Without Label..." style={'primary'} />
+          </div>
+          <div className="mt-3 flex w-full flex-col">
+            <Label htmlFor="input1" className="mb-2 text-sm font-semibold">
+              First Name
+            </Label>
+            <Input id="input1" placeholder="John..." style={'secondary'} />
+          </div>
+          <div className="mt-3 flex w-full flex-col">
+            <Label htmlFor="input2" className="mb-2 text-sm font-semibold">
+              Last Name
+            </Label>
+            <Input id="input2" placeholder="Doe..." style={'info'} />
+          </div>
+          <div className="mt-3 flex w-full flex-col">
+            <Label htmlFor="input3" className="mb-2 text-sm font-semibold">
+              Oops!
+            </Label>
+            <Input
+              id="input3"
+              placeholder="This one has errors..."
+              style={'info'}
+              error={'This is an error message.'}
             />
+          </div>
+          <div className="mt-3 flex w-full flex-col">
+            <Label htmlFor="input4" className="mb-2 text-sm font-semibold">
+              Password
+            </Label>
+            <Input id="input4" type="password" placeholder="Password..." />
           </div>
         </Container>
       </div>
