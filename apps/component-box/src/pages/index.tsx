@@ -481,19 +481,19 @@ export default function Home() {
         </Container>
         <Container title="Input Component" className="flex flex-col">
           <div className="w-full">
-            <Input id="Name" placeholder="Without Label..." style={'primary'} />
+            <Input id="Name" placeholder="Without Label..." style={'rose'} />
           </div>
           <div className="mt-3 flex w-full flex-col">
             <Label htmlFor="input1" className="mb-2 text-sm font-semibold">
               First Name
             </Label>
-            <Input id="input1" placeholder="John..." style={'secondary'} />
+            <Input id="input1" placeholder="John..." style={'amber'} />
           </div>
           <div className="mt-3 flex w-full flex-col">
             <Label htmlFor="input2" className="mb-2 text-sm font-semibold">
               Last Name
             </Label>
-            <Input id="input2" placeholder="Doe..." style={'info'} />
+            <Input id="input2" placeholder="Doe..." style={'yellow'} />
           </div>
           <div className="mt-3 flex w-full flex-col">
             <Label htmlFor="input3" className="mb-2 text-sm font-semibold">
@@ -502,7 +502,7 @@ export default function Home() {
             <Input
               id="input3"
               placeholder="This one has errors..."
-              style={'info'}
+              style={'yellow'}
               error={'This is an error message.'}
             />
           </div>

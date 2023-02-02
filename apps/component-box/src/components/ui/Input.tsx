@@ -10,13 +10,12 @@ const InputStyles = cva(
     variants: {
       style: {
         base: 'border-gray-300 dark:border-gray-700 focus:border-gray-500 dark:focus:border-gray-500 text-gray-900 dark:text-gray-100 focus:ring-slate-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-slate-400 dark:focus:ring-offset-slate-900 dark:disabled:opacity-50',
-        primary:
-          'border-primary-300 dark:border-primary-700 focus:border-primary-500 dark:focus:border-primary-500 text-primary-900 dark:text-primary-100 focus:ring-primary-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-primary-400 dark:focus:ring-offset-primary-900 dark:disabled:opacity-50',
-        secondary:
-          'border-secondary-300 dark:border-secondary-700 focus:border-secondary-500 dark:focus:border-secondary-500 text-secondary-900 dark:text-secondary-100 focus:ring-secondary-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-secondary-400 dark:focus:ring-offset-secondary-900 dark:disabled:opacity-50',
-        info: 'border-info-300 dark:border-info-700 focus:border-info-500 dark:focus:border-info-500 text-info-900 dark:text-info-100 focus:ring-info-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-info-400 dark:focus:ring-offset-info-900 dark:disabled:opacity-50',
-        error:
-          'border-error-300 dark:border-error-700 focus:border-error-500 dark:focus:border-error-500 text-error-900 dark:text-error-100 focus:ring-error-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-error-400 dark:focus:ring-offset-error-900 dark:disabled:opacity-50',
+        rose: 'border-rose-300 dark:border-rose-700 focus:border-rose-500 dark:focus:border-rose-500 text-rose-900 dark:text-rose-100 focus:ring-rose-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-rose-400 dark:focus:ring-offset-rose-900 dark:disabled:opacity-50',
+        amber:
+          'border-amber-300 dark:border-amber-700 focus:border-amber-500 dark:focus:border-amber-500 text-amber-900 dark:text-amber-100 focus:ring-amber-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-amber-400 dark:focus:ring-offset-amber-900 dark:disabled:opacity-50',
+        yellow:
+          'border-yellow-300 dark:border-yellow-700 focus:border-yellow-500 dark:focus:border-yellow-500 text-yellow-900 dark:text-yellow-100 focus:ring-yellow-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-yellow-400 dark:focus:ring-offset-yellow-900 dark:disabled:opacity-50',
+        red: 'border-red-300 dark:border-red-700 focus:border-red-500 dark:focus:border-red-500 text-red-900 dark:text-red-100 focus:ring-red-400 disabled:cursor-not-allowed disabled:opacity-50 dark:focus:ring-red-400 dark:focus:ring-offset-red-900 dark:disabled:opacity-50',
       },
     },
     defaultVariants: {
@@ -25,28 +24,16 @@ const InputStyles = cva(
   }
 );
 
-interface InputProps extends VariantProps<typeof InputStyles> {
+interface InputProps
+  extends Omit<React.HTMLProps<HTMLInputElement>, 'style'>,
+    VariantProps<typeof InputStyles> {
   type?: 'text' | 'password' | 'email' | 'number';
-  placeholder?: string;
-  value?: string | number;
-  id?: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  disabled?: boolean;
-  className?: ClassValue;
   error?: string;
 }
 
-export const Input = ({
-  disabled,
-  onChange,
-  placeholder,
-  type = 'text',
-  value,
-  className,
-  error,
-  id,
-  ...props
-}: InputProps) => {
+export const Input = (props: InputProps) => {
+  const { error, type = 'text', style, ...rest } = props;
+
   const [showPassword, setShowPassword] = useState(false);
   const toggleShowPassword = () => setShowPassword(!showPassword);
 
@@ -61,22 +48,16 @@ export const Input = ({
     <div className="flex h-14 flex-col space-y-2">
       <div className="relative flex flex-row">
         <input
-          id={id}
-          className={cn(
-            error && error.length > 0
-              ? InputStyles({ style: 'error' })
-              : InputStyles(props),
-            className,
-            'relative'
-          )}
-          disabled={disabled}
-          onChange={onChange}
-          placeholder={placeholder}
           type={getType()}
-          value={value}
+          className={cn(
+            error && error?.length > 0
+              ? InputStyles({ style: 'red' })
+              : InputStyles({ style })
+          )}
+          {...rest}
         />
         {type === 'password' ? (
-          <button	
+          <button
             className="absolute right-2 top-[50%] flex h-8 w-8 -translate-y-[50%] items-center justify-center rounded-full hover:bg-gray-200 focus:outline-none focus:ring-2 focus:ring-gray-300 focus:ring-offset-2 dark:hover:bg-gray-800/30 dark:focus:ring-gray-300 dark:focus:ring-offset-gray-900"
             type="button"
             onClick={() => {
@@ -87,9 +68,7 @@ export const Input = ({
         ) : null}
       </div>
       {error && error.length > 0 && (
-        <span className="text-error-300 dark:text-error-700 text-xs">
-          {error}
-        </span>
+        <span className="text-xs text-red-300 dark:text-red-700">{error}</span>
       )}
     </div>
   );
