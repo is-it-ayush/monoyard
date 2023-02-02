@@ -1,11 +1,25 @@
 import { ReactNode } from 'react';
+
 import { cn } from '@src/lib/utils';
+import Balancer from 'react-wrap-balancer';
 
 interface TextProps {
   children: ReactNode;
   heading?: boolean;
   headingSize?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   className?: string;
+  size?: 'xs' | 'sm' | 'base' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl' | '5xl';
+  weight?:
+    | 'thin'
+    | 'extralight'
+    | 'light'
+    | 'normal'
+    | 'medium'
+    | 'semibold'
+    | 'bold'
+    | 'extrabold'
+    | 'black';
+  ratio?: number;
 }
 
 export const Text = ({
@@ -13,38 +27,50 @@ export const Text = ({
   heading = false,
   headingSize,
   className,
+  size = 'base',
+  weight = 'normal',
+  ratio = 1,
 }: TextProps) => {
+  const sizeClass = {
+    xs: 'text-xs',
+    sm: 'text-sm',
+    base: 'text-base',
+    lg: 'text-lg',
+    xl: 'text-xl',
+    '2xl': 'text-2xl',
+    '3xl': 'text-3xl',
+    '4xl': 'text-4xl',
+    '5xl': 'text-5xl',
+  }[size];
+
+  const weightClass = {
+    thin: 'font-thin',
+    extralight: 'font-extralight',
+    light: 'font-light',
+    normal: 'font-normal',
+    medium: 'font-medium',
+    semibold: 'font-semibold',
+    bold: 'font-bold',
+    extrabold: 'font-extrabold',
+    black: 'font-black',
+  }[weight];
+
   if (heading) {
-    switch (headingSize) {
-      case 'h1':
-        return (
-          <h1 className={cn('text-2xl font-bold', className)}>{children}</h1>
-        );
-      case 'h2':
-        return (
-          <h2 className={cn('text-xl font-bold', className)}>{children}</h2>
-        );
-      case 'h3':
-        return (
-          <h3 className={cn('text-lg font-bold', className)}>{children}</h3>
-        );
-      case 'h4':
-        return (
-          <h4 className={cn('text-base font-bold', className)}>{children}</h4>
-        );
-      case 'h5':
-        return (
-          <h5 className={cn('text-sm font-bold', className)}>{children}</h5>
-        );
-      case 'h6':
-        return (
-          <h6 className={cn('text-xs font-bold', className)}>{children}</h6>
-        );
-      default:
-        return (
-          <h1 className={cn('text-2xl font-bold', className)}>{children}</h1>
-        );
-    }
+    const Heading = headingSize || 'h2';
+    return (
+      <Heading className={cn(sizeClass, weightClass, className)}>
+        <Balancer ratio={ratio >= 0 && ratio <= 1 ? ratio : 1}>
+          {children}
+        </Balancer>
+      </Heading>
+    );
   }
-  return <p className={cn('text-base', className)}>{children}</p>;
+
+  return (
+    <p className={cn(sizeClass, weightClass, className)}>
+      <Balancer ratio={ratio >= 0 && ratio <= 1 ? ratio : 1}>
+        {children}
+      </Balancer>
+    </p>
+  );
 };

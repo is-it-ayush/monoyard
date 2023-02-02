@@ -68,7 +68,7 @@ export const Input = (props: InputProps) => {
         ) : null}
       </div>
       {error && error.length > 0 && (
-        <span className="text-xs text-red-300 dark:text-red-700">{error}</span>
+        <span className="text-xs text-red-900 dark:text-red-700">{error}</span>
       )}
     </div>
   );
