@@ -29,7 +29,7 @@ export const Text = ({
   className,
   size = 'base',
   weight = 'normal',
-  ratio = 1,
+  ratio = heading ? 1 : 0,
 }: TextProps) => {
   const sizeClass = {
     xs: 'text-xs',

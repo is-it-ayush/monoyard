@@ -24,11 +24,21 @@ module.exports = {
             backgroundPosition: '0% 50%',
           },
         },
+        "indeterminate": {
+          from: {
+            left: "-50%",
+          },
+          to: {
+            left: "100%",
+          },
+        },
       },
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
-        'gradient-animation': 'gradient-move 10s ease infinite',
+        'gradient-animation': 'gradient-move 5s ease infinite',
+        "indeterminate": "indeterminate 1s ease-in-out infinite",
+
       },
       backgroundSize: {
         400: '400%',

@@ -107,6 +107,36 @@ import {
   MenubarSubTrigger,
   MenubarTrigger,
 } from '@src/components/ui/MenuBar';
+import {
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from '@src/components/ui/Popover';
+import { Progress } from '@src/components/ui/Progress';
+import { RadioGroup, RadioGroupItem } from '@src/components/ui/RadioGroup';
+import { ScrollArea } from '@src/components/ui/ScrollArea';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@src/components/ui/Select';
+import { Separator } from '@src/components/ui/Separator';
+import { Slider } from '@src/components/ui/Slider';
+import {
+  Tabs,
+  TabsContent,
+  TabsList,
+  TabsTrigger,
+} from '@src/components/ui/Tabs';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@src/components/ui/Tooltip';
+import { Toggle } from '@src/components/ui/Toggle';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -121,14 +151,16 @@ export default function Home() {
     setMounted(true);
   }, []);
 
+  // When rendering client side don't display anything until you have confirmed the theme.
+  // This prevents the wrong theme being loaded on first render.
   if (!mounted) {
     return null;
   }
 
   return (
     <main
-      className={`flex ${font.className} items-center justify-center bg-white dark:bg-black`}>
-      <div className="absolute right-5 top-5 flex w-fit flex-row p-3 lg:left-5">
+      className={`flex ${font.className} relative items-center justify-center bg-white dark:bg-black/70`}>
+      <div className="absolute right-5 top-5 flex w-fit flex-row p-3">
         {
           <button
             onClick={() => {
@@ -162,7 +194,7 @@ export default function Home() {
           </Dialog>
         </div>
       </div>
-      <div className="divide-y-5 mt-2 flex w-fit flex-col gap-5 divide-y-2 divide-black/20 dark:divide-white/20">
+      <div className="divide-y-5 relative mt-[60px] flex w-fit flex-col gap-5 divide-y-2 divide-black/20 dark:divide-white/20">
         <Container title="Button Component">
           <Button
             onClick={() => {
@@ -446,7 +478,7 @@ export default function Home() {
             <HoverCardTrigger>Hover</HoverCardTrigger>
             <HoverCardContent>
               <div className="space-y-2">
-                <h4 className="text-sm font-semibold">@is-it-ayush</h4>
+                <h4 className="text-sm font-semibold"> is-it-ayush</h4>
                 <p className="text-sm">
                   This one's awesome, isn't it? You can use this to brief
                   display information.
@@ -481,13 +513,13 @@ export default function Home() {
         </Container>
         <Container title="Input Component" className="flex flex-col">
           <div className="w-full">
-            <Input id="Name" placeholder="Without Label..." style={'rose'} />
+            <Input id="Name" placeholder="Without Label..." style={'default'} />
           </div>
           <div className="mt-3 flex w-full flex-col">
             <Label htmlFor="input1" className="mb-2 text-sm font-semibold">
               First Name
             </Label>
-            <Input id="input1" placeholder="John..." style={'amber'} />
+            <Input id="input1" placeholder="John..." style={'slate'} />
           </div>
           <div className="mt-3 flex w-full flex-col">
             <Label htmlFor="input2" className="mb-2 text-sm font-semibold">
@@ -603,6 +635,181 @@ export default function Home() {
               </MenubarContent>
             </MenubarMenu>
           </Menubar>
+        </Container>
+        <Container title="Popover Component">
+          <Popover>
+            <PopoverTrigger>Open</PopoverTrigger>
+            <PopoverContent>Place content for the popover here.</PopoverContent>
+          </Popover>
+        </Container>
+        <Container
+          title="Progress Component"
+          className="flex flex-col space-y-4">
+          <Progress value={0} className="w-[300px]" />
+          <Progress value={25} className="w-[300px]" />
+          <Progress value={50} className="w-[300px]" />
+          <Progress value={75} className="w-[300px]" />
+          <Progress value={100} className="w-[300px]" />
+          <Progress value={50} indeterminate={true} className="w-[300px]" />
+        </Container>
+        <Container title="Radio Component">
+          <RadioGroup defaultValue="option-one">
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="option-one" id="option-one" />
+              <Label htmlFor="option-one">Ayush</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="option-two" id="option-two" />
+              <Label htmlFor="option-two">Keshav</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="option-three" id="option-three" />
+              <Label htmlFor="option-three">Github</Label>
+            </div>
+            <div className="flex items-center space-x-2">
+              <RadioGroupItem value="option-four" id="option-four" />
+              <Label htmlFor="option-four">Twitter</Label>
+            </div>
+          </RadioGroup>
+        </Container>
+        <Container title="Scroll Area Component">
+          <ScrollArea className="flex h-[300px] w-[300px] flex-col justify-center py-5">
+            {Array.from({ length: 50 }).map((_, i) => (
+              <div
+                key={i}
+                className="my-5 flex h-[100px] items-center justify-center bg-gray-200 dark:bg-black/5">
+                You're appreciated {i}x times.
+              </div>
+            ))}
+          </ScrollArea>
+        </Container>
+        <Container title="Select Component">
+          <Select>
+            <SelectTrigger className="w-[180px]">
+              <SelectValue placeholder="Theme" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="light">Light</SelectItem>
+              <SelectItem value="dark">Dark</SelectItem>
+              <SelectItem value="system">System</SelectItem>
+            </SelectContent>
+          </Select>
+        </Container>
+        <Container title="Separator" className="flex flex-col">
+          <Text weight="medium" size="lg">
+            Ayush
+          </Text>
+          <Separator className="my-4" />
+          <div className="flex h-5 items-center space-x-4 text-sm">
+            <Text>Twitter</Text>
+            <Separator orientation="vertical" />
+            <Text>Github</Text>
+            <Separator orientation="vertical" />
+            <Text>Blog</Text>
+          </div>
+        </Container>
+        <Container title="Slider Component" className="flex flex-col gap-5">
+          <Slider
+            defaultValue={[33]}
+            max={100}
+            step={1}
+            minStepsBetweenThumbs={1}
+          />
+          <Text weight="medium" size="lg">
+            Vertical
+          </Text>
+          <Slider
+            defaultValue={[33, 66]}
+            max={100}
+            step={1}
+            minStepsBetweenThumbs={1}
+          />
+          <div className="flex h-[250px] items-center space-x-4 text-sm">
+            <Slider
+              defaultValue={[33, 66]}
+              max={100}
+              step={1}
+              className="h-[150px] w-full"
+              orientation="vertical"
+            />
+            <Text>Horizontal</Text>
+            <Slider
+              defaultValue={[33, 66]}
+              max={100}
+              step={1}
+              className="h-[150px] w-full"
+              orientation="vertical"
+            />
+          </div>
+        </Container>
+        <Container title="Tabs Component">
+          <Tabs defaultValue="account" className="w-[300px]">
+            <TabsList>
+              <TabsTrigger value="login">Login</TabsTrigger>
+              <TabsTrigger value="signup">Signup</TabsTrigger>
+            </TabsList>
+            <TabsContent value="login">
+              <Text size="sm">
+                Login to your account to get started. It's free and only takes a
+                minute.
+              </Text>
+              <div className="grid gap-2 py-4">
+                <div className="space-y-1">
+                  <Label htmlFor="username">Username</Label>
+                  <Input id="username" placeholder="Username..." />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    id="password"
+                    placeholder="Password..."
+                    type="password"
+                  />
+                </div>
+              </div>
+              <div className="flex">
+                <Button>Login</Button>
+              </div>
+            </TabsContent>
+            <TabsContent value="signup">
+              <Text size="sm">
+                Create an account to get started. It's free and only takes a
+                minute.
+              </Text>
+              <div className="grid gap-2 py-4">
+                <div className="space-y-1">
+                  <Label htmlFor="username">Username</Label>
+                  <Input id="username" placeholder="Username..." />
+                </div>
+                <div className="space-y-1">
+                  <Label htmlFor="password">Password</Label>
+                  <Input
+                    id="password"
+                    placeholder="Password..."
+                    type="password"
+                  />
+                </div>
+              </div>
+              <div className="flex">
+                <Button>Signup</Button>
+              </div>
+            </TabsContent>
+          </Tabs>
+        </Container>
+        <Container title="Tooltip Component">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger>Hover</TooltipTrigger>
+              <TooltipContent className="min-w-full">
+                <Text size="sm" ratio={1}>
+                  Add to library
+                </Text>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </Container>
+        <Container title="Toggle Component">
+          <Toggle>Enable</Toggle>
         </Container>
       </div>
     </main>
