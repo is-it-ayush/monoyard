@@ -137,6 +137,7 @@ import {
   TooltipTrigger,
 } from '@src/components/ui/Tooltip';
 import { Toggle } from '@src/components/ui/Toggle';
+import Head from 'next/head';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -160,6 +161,27 @@ export default function Home() {
   return (
     <main
       className={`flex ${font.className} relative items-center justify-center bg-white dark:bg-black/70`}>
+      <Head>
+        <title>Components | Ayush</title>
+        <meta
+          name="description"
+          content="I think I might re-use them components."
+        />
+        <link rel="icon" href="/favicon.ico" />
+        <meta property="og:title" content="Components | Ayush" />
+        <meta
+          property="og:description"
+          content="I think I might re-use these components."
+        />
+        <meta
+          property="og:image"
+          content="https://component-box.vercel.app/api/og"
+        />
+        <meta property="og:url" content="https://component-box.vercel.app/" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@is_it_ayush" />
+        <meta name="twitter:creator" content="@is_it_ayush" />
+      </Head>
       <div className="fixed left-[50%] top-5 z-[5] flex w-[90%] -translate-x-[50%] flex-row items-center justify-between rounded-full bg-white bg-opacity-20 p-3 py-5 drop-shadow-lg backdrop-blur-[5px] dark:bg-black/5">
         <div className="flex flex-row space-x-2">
           <Text size="sm" weight="medium">
