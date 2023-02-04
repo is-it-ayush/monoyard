@@ -137,7 +137,7 @@ import {
   TooltipTrigger,
 } from '@src/components/ui/Tooltip';
 import { Toggle } from '@src/components/ui/Toggle';
-import Head from 'next/head';
+import { NextSeo } from 'next-seo';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -161,35 +161,30 @@ export default function Home() {
   return (
     <main
       className={`flex ${font.className} relative items-center justify-center bg-white dark:bg-black/70`}>
-      <Head>
-        <title>Components | Ayush</title>
-        <meta
-          name="description"
-          content="I think I might re-use these components. You can too."
-        />
-        <link rel="icon" href="/favicon.ico" />
-        <meta
-          name="keywords"
-          content="React, NextJS, Components, UI, Tailwind, Radix, Accessibility, a11y"
-        />
-        <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-
-        <meta name="author" content="Ayush Gupta" />
-        <meta property="og:title" content="Components | Ayush" />
-        <meta
-          property="og:description"
-          content="I think I might re-use these components. You can too."
-        />
-        <meta
-          property="og:image"
-          content="https://component-box.vercel.app/api/og"
-        />
-        <meta property="og:url" content="https://component-box.vercel.app/" />
-        <meta property="og:type" content="website" />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:creator" content="@is_it_ayush" />
-        <meta name="twitter:site" content="@is_it_ayush" />
-      </Head>
+      <NextSeo
+        title="Components | Ayush"
+        description="I think I might re-use these components. You can too."
+        canonical="https://component-box.vercel.app/"
+        openGraph={{
+          url: 'https://component-box.vercel.app/',
+          title: 'Components | Ayush',
+          description: 'I think I might re-use these components. You can too.',
+          images: [
+            {
+              url: 'https://component-box.vercel.app/api/og/',
+              width: 1200,
+              height: 600,
+              alt: 'OG Image.',
+              type: 'image/jpeg',
+            },
+          ],
+        }}
+        twitter={{
+          handle: '@is_it_ayush',
+          site: '@is_it_ayush',
+          cardType: 'summary_large_image',
+        }}
+      />
       <div className="fixed left-[50%] top-5 z-[5] flex w-[90%] -translate-x-[50%] flex-row items-center justify-between rounded-full bg-white bg-opacity-20 p-3 py-5 drop-shadow-lg backdrop-blur-[5px] dark:bg-black/5">
         <div className="flex flex-row space-x-2">
           <Text size="sm" weight="medium">
