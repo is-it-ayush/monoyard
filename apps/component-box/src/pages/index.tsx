@@ -179,16 +179,6 @@ export default function Home() {
         />
         <meta property="og:url" content="https://component-box.vercel.app/" />
         <meta property="og:type" content="website" />
-        <meta property="og:title" content="Components | Ayush" />
-        <meta
-          property="og:description"
-          content="I think I might re-use these components. You can too."
-        />
-        <meta
-          property="og:image"
-          content="https://component-box.vercel.app/api/og"
-        />
-
         <meta name="twitter:card" content="summary_large_image" />
         <meta property="twitter:domain" content="component-box.vercel.app" />
         <meta
