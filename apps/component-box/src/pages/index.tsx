@@ -165,21 +165,45 @@ export default function Home() {
         <title>Components | Ayush</title>
         <meta
           name="description"
-          content="I think I might re-use them components."
+          content="I think I might re-use these components. You can too."
         />
         <link rel="icon" href="/favicon.ico" />
         <meta property="og:title" content="Components | Ayush" />
         <meta
           property="og:description"
-          content="I think I might re-use these components."
+          content="I think I might re-use these components. You can too."
         />
         <meta
           property="og:image"
           content="https://component-box.vercel.app/api/og"
         />
         <meta property="og:url" content="https://component-box.vercel.app/" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Components | Ayush" />
+        <meta
+          property="og:description"
+          content="I think I might re-use these components. You can too."
+        />
+        <meta
+          property="og:image"
+          content="https://component-box.vercel.app/api/og"
+        />
+
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@is_it_ayush" />
+        <meta property="twitter:domain" content="component-box.vercel.app" />
+        <meta
+          property="twitter:url"
+          content="https://component-box.vercel.app/"
+        />
+        <meta name="twitter:title" content="Components | Ayush" />
+        <meta
+          name="twitter:description"
+          content="I think I might re-use these components. You can too."
+        />
+        <meta
+          name="twitter:image"
+          content="https://component-box.vercel.app/api/og"
+        />
         <meta name="twitter:creator" content="@is_it_ayush" />
       </Head>
       <div className="fixed left-[50%] top-5 z-[5] flex w-[90%] -translate-x-[50%] flex-row items-center justify-between rounded-full bg-white bg-opacity-20 p-3 py-5 drop-shadow-lg backdrop-blur-[5px] dark:bg-black/5">
