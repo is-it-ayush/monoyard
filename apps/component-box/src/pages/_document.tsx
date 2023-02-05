@@ -14,15 +14,24 @@ export default function Document() {
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="robots" content="index,follow" />
-        <meta name="description" content="I think I might re-use these components. You can too."/>
+        <meta
+          name="description"
+          content="I think I might re-use these components. You can too."
+        />
         <link rel="icon" href="/favicon.ico" />
         <title>Components | Ayush</title>
         <meta name="og:site_name" content="Components | Ayush" />
         <meta name="og:title" content="Components | Ayush" />
-        <meta name="og:description" content="I think I might re-use these components. You can too."/>
+        <meta
+          name="og:description"
+          content="I think I might re-use these components. You can too."
+        />
         <meta name="og:type" content="website" />
         <meta name="og:url" content="https://component-box.vercel.app/" />
-        <meta name="og:image" content={og.href} />
+        <meta
+          name="og:image"
+          content="https://monoyard-component-box-git-master-xxentity.vercel.app/api/og/"
+        />
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@is_it_ayush" />
         <meta name="twitter:creator" content="@is_it_ayush" />
