@@ -137,6 +137,7 @@ import {
   TooltipTrigger,
 } from '@src/components/ui/Tooltip';
 import { Toggle } from '@src/components/ui/Toggle';
+import { SeoHeaders } from '@src/components/ui/SeoHeaders';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -157,10 +158,34 @@ export default function Home() {
     return null;
   }
 
+  const seo = {
+    title: 'Huh! Components?',
+    description:
+      'A collection of components for Next.js restyled from Shadcns Radix + Tailwind repo.',
+    author: 'By Ayush',
+    twitter: '@is_it_ayush',
+  };
+
+  const url =
+    process.env.NODE_ENV === 'production'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : 'http://localhost:3000';
+
+  const og = new URL(`${url}/api/og?title=${seo.title}&author=${seo.author}`);
+
   return (
     <main
       className={`flex ${font.className} relative items-center justify-center bg-white dark:bg-black/70`}>
       <div className="fixed left-[50%] top-5 z-[5] flex w-[90%] -translate-x-[50%] flex-row items-center justify-between rounded-full bg-white bg-opacity-20 p-3 py-5 drop-shadow-lg backdrop-blur-[5px] dark:bg-black/5">
+        <SeoHeaders
+          title={seo.title}
+          description={seo.description}
+          author={seo.author}
+          twitterAuthor={seo.twitter}
+          twitterSite={seo.twitter}
+          url={process.env.NEXT_PUBLIC_BASE_URL}
+          imageUrl={og.href}
+        />
         <div className="flex flex-row space-x-2">
           <Text size="sm" weight="medium">
             Ayush
