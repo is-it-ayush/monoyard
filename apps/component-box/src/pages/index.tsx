@@ -163,7 +163,7 @@ export default function Home() {
       ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
       : 'http://localhost:3000';
 
-  const og = new URL(`${url}/api/og/}`);
+  const og = new URL(`${url}/api/og/`);
 
   return (
     <main
