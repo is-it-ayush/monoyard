@@ -137,7 +137,6 @@ import {
   TooltipTrigger,
 } from '@src/components/ui/Tooltip';
 import { Toggle } from '@src/components/ui/Toggle';
-import { NextSeo } from 'next-seo';
 
 export const font = Poppins({
   subsets: ['latin'],
@@ -158,39 +157,9 @@ export default function Home() {
     return null;
   }
 
-  const url =
-    process.env.NODE_ENV === 'production'
-      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
-      : 'http://localhost:3000';
-
-  const og = new URL(`${url}/api/og/`);
-
   return (
     <main
       className={`flex ${font.className} relative items-center justify-center bg-white dark:bg-black/70`}>
-      <NextSeo
-        title="Components | Ayush"
-        description="I think I might re-use these components. You can too."
-        canonical="https://component-box.vercel.app/"
-        openGraph={{
-          url: 'https://component-box.vercel.app/',
-          title: 'Components | Ayush',
-          description: 'I think I might re-use these components. You can too.',
-          images: [
-            {
-              url: og.href,
-              width: 1200,
-              height: 600,
-              alt: 'OG Image.',
-            },
-          ],
-        }}
-        twitter={{
-          handle: '@is_it_ayush',
-          site: '@is_it_ayush',
-          cardType: 'summary_large_image',
-        }}
-      />
       <div className="fixed left-[50%] top-5 z-[5] flex w-[90%] -translate-x-[50%] flex-row items-center justify-between rounded-full bg-white bg-opacity-20 p-3 py-5 drop-shadow-lg backdrop-blur-[5px] dark:bg-black/5">
         <div className="flex flex-row space-x-2">
           <Text size="sm" weight="medium">
