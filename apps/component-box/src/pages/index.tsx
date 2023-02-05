@@ -158,6 +158,13 @@ export default function Home() {
     return null;
   }
 
+  const url =
+    process.env.NODE_ENV === 'production'
+      ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}`
+      : 'http://localhost:3000';
+
+  const og = new URL(`${url}/api/og/}`);
+
   return (
     <main
       className={`flex ${font.className} relative items-center justify-center bg-white dark:bg-black/70`}>
@@ -171,11 +178,10 @@ export default function Home() {
           description: 'I think I might re-use these components. You can too.',
           images: [
             {
-              url: 'https://component-box.vercel.app/api/og/',
+              url: og.href,
               width: 1200,
               height: 600,
               alt: 'OG Image.',
-              type: 'image/jpeg',
             },
           ],
         }}
